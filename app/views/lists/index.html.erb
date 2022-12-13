@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lists</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Completed</th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr >
+        <td>
+          <%= link_to list.description, edit_list_path(list), class: "text-decoration-none" %>
+        </td>
+
+        <td class="fw-bold <%= list.completed? ? "text-success" : "text-danger" %> " >
+          <%= list.completed%>
+        </td>
+        
+        <td><%= link_to "Destroy", list, method: :delete, data: {confirm: "Are you sure ?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New list", new_list_path %>
